@@ -36,6 +36,7 @@ public class ArrayList<E> extends AbstractList<E> {
     // Inserts the given value into the list at the given index.
     // If necessary, resizes the array to fit the value.
     // Precondition: 0 <= index <= size
+    @Override
     public void add(int index, E value) {
         checkIndex(index, 0, size);     // okay to add at index == size (end of list)
         checkResize();
@@ -52,6 +53,7 @@ public class ArrayList<E> extends AbstractList<E> {
 
     // Returns the value in the list at the given index.
     // Precondition: 0 <= index < size
+    @Override
     public E get(int index) {
         checkIndex(index, 0, size - 1);
         return elementData[index];
@@ -59,6 +61,7 @@ public class ArrayList<E> extends AbstractList<E> {
 
     // Returns the index of the first occurrence of the given value in the list,
     // or -1 if the value is not found in the list.
+    @Override
     public int indexOf(E value) {
         for (int i = 0; i < size; i++) {
             if (elementData[i].equals(value)) {
@@ -69,6 +72,7 @@ public class ArrayList<E> extends AbstractList<E> {
     }
 
     // Returns an Iterator over the elements of this list.
+    @Override
     public Iterator<E> iterator() {
         return new ArrayListIterator();
     }
@@ -76,6 +80,7 @@ public class ArrayList<E> extends AbstractList<E> {
     // Removes the value from the given index, shifting following elements left
     // by 1 slot to cover the hole.
     // Precondition: 0 <= index < size
+    @Override
     public void remove(int index) {
         checkIndex(index, 0, size - 1);
         for (int i = index; i <= size - 1; i++) {
@@ -86,18 +91,21 @@ public class ArrayList<E> extends AbstractList<E> {
 
     // Sets the given index to store the given value.
     // Precondition: 0 <= index < size
+    @Override
     public void set(int index, E value) {
         checkIndex(index, 0, size - 1);
         elementData[index] = value;
     }
 
     // Returns the number of elements in the list.
+    @Override
     public int size() {
         return size;
     }
 
     // Returns a String representation of the elements in the list, such as
     // "[42, -3, 17, 99]", or "[]" for an empty list.
+    @Override
     public String toString() {
         if (size > 0) {
             String result = "[" + elementData[0];
@@ -140,15 +148,18 @@ public class ArrayList<E> extends AbstractList<E> {
             index = 0;
         }
 
+        @Override
         public boolean hasNext() {
             return index < size();
         }
 
+        @Override
         public E next() {
             index++;
             return get(index - 1);
         }
 
+        @Override
         public void remove() {
             ArrayList.this.remove(index - 1);
             index--;
