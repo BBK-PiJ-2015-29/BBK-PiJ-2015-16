@@ -12,13 +12,11 @@ public class TreeIntSortedListTest {
         tisl.add(80);
         tisl.add(10);
         tisl.add(90);
+        tisl.add(5);
 
 
-        System.out.println();
-        System.out.println();
         System.out.println("=== PRINT LIST ===");
-        String result = tisl.toString();
-        System.out.println(result);
+        System.out.println(tisl);
         System.out.println();
 
         System.out.println("=== CHECK FOR CONTAINS ===");
@@ -30,10 +28,10 @@ public class TreeIntSortedListTest {
         tisl.add(30);
         tisl.add(60);
         tisl.add(20);
+
         System.out.println();
         System.out.println("=== PRINT LIST ===");
-        result = tisl.toString();
-        System.out.println(result);
+        System.out.println(tisl);
         System.out.println();
 
 

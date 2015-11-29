@@ -1,5 +1,7 @@
 package q3_3;
 
+import q3_1.IntSortedList;
+
 public class ListIntSortedList implements IntSortedList {
 
     private int value;

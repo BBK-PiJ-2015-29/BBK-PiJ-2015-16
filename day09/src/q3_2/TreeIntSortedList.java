@@ -1,47 +1,45 @@
 package q3_2;
 
-public class TreeIntSortedList implements IntSortedList {
+import q3_1.IntSortedList;
 
-    private int value;
+public class TreeIntSortedList implements IntSortedList {
     private TreeIntSortedList left;
+    private int value;
     private TreeIntSortedList right;
 
-    //constructor
     public TreeIntSortedList(int value) {
-        this.value = value;
         this.left = null;
+        this.value = value;
         this.right = null;
     }
 
     @Override
     public void add(int newNumber) {
-
-        TreeIntSortedList insertNode = new TreeIntSortedList(newNumber);
-        if (newNumber < this.value) {
-            if (this.left == null) {
-                this.left = insertNode;
+        if (newNumber < value) {
+            if (left == null) {
+                left = new TreeIntSortedList(newNumber);
             } else {
-                this.left.add(newNumber);
+                left.add(newNumber);
             }
         } else {
-            if (this.right == null) {
-                this.right = insertNode;
+            if (right == null) {
+                right = new TreeIntSortedList(newNumber);
             } else {
-                this.right.add(newNumber);
+                right.add(newNumber);
             }
         }
     }
 
     @Override
     public boolean contains(int checkNumber) {
-        if (checkNumber == this.value) {
+        if (checkNumber == value) {
             return true;
         }
-        if (this.left != null) {
-            return this.left.contains(checkNumber);
+        if (left != null) {
+            return left.contains(checkNumber);
         }
-        if (this.right != null) {
-            return this.right.contains(checkNumber);
+        if (right != null) {
+            return right.contains(checkNumber);
         }
         return false;
     }
@@ -50,11 +48,11 @@ public class TreeIntSortedList implements IntSortedList {
     public String toString() {
         StringBuilder result = new StringBuilder("");
         if (left != null) {
-            result.append(left.toString());
+            result.append(left.toString());   // recursive call
         }
         result.append(value + ", ");
         if (right != null) {
-            result.append(right.toString());
+            result.append(right.toString());  // ditto
         }
         return result.toString();
     }
