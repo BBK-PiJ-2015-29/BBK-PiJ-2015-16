@@ -23,7 +23,7 @@ public class TextLoop implements Runnable {
                 r.run();
             }
         } else {
-            Executor me = new MarkExecutor();
+            Executor me = new MyExecutor();
             Executor e = new SerialExecutor(me);
             for (int i = 0; i < 5; i++) {
                 Runnable r = new TextLoop("Thread " + i + ".");

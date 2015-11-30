@@ -20,7 +20,7 @@ public class Task implements Runnable {
         } catch (InterruptedException ex) {
             // do nothing
         }
-//		System.out.println("-- End > User " + userID + ", Task " + taskID +  ".");
+        System.out.println("-- End > User " + userID + ", Task " + taskID + ".");
     }
 
     public int getWait() {

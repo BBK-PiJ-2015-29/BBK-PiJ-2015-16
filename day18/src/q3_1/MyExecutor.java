@@ -1,8 +1,8 @@
-package q3_2;
+package q3_1;
 
 import java.util.concurrent.Executor;
 
-public class MarkExecutor implements Executor {
+public class MyExecutor implements Executor {
 
     @Override
     public void execute(Runnable r) {

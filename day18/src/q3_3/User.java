@@ -19,14 +19,14 @@ public class User implements Runnable {
         Task task = null;
         int wait;
         for (int taskID = 0; taskID < 100; taskID++) {
-            // random between 0.5 and 7 seconds
+            // random time between 0.5 and 7 seconds
             wait = (int) (Math.random() * 6500) + 500;
-            ;
-			System.out.println("Wait = " + taskExecutor.getMaxWaitingTime());
+
+            System.out.println("Wait = " + taskExecutor.getMaxWaitingTime());
 
             while (taskExecutor.getMaxWaitingTime() > timeCanWait) {
                 System.out.println("User " + userID +
-                        ": I'll come back, current wait " + taskExecutor.getMaxWaitingTime());
+                        ": The site is down! I'll come back later. Current wait " + taskExecutor.getMaxWaitingTime() + " can wait " + timeCanWait);
                 try {
                     Thread.sleep(WAIT_A_LONG_TIME);
                 } catch (InterruptedException ex) {

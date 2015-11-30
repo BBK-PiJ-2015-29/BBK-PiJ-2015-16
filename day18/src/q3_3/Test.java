@@ -17,11 +17,8 @@ public class Test {
             Runnable r = new User(taskExecutor, userID, TIME_USER_WILL_WAIT);
             userExecutor.execute(r);
         }
-
         userExecutor.shutdown();
-
     }
-
 }
 
 

@@ -1,10 +1,12 @@
 package q3_2;
 
+import q3_1.SerialExecutor;
+
 import java.util.concurrent.Executor;
 
-public class MarkSerialExecutor extends SerialExecutor implements Executor {
+public class MySerialExecutor extends SerialExecutor implements Executor {
 
-    public MarkSerialExecutor(Executor executor) {
+    public MySerialExecutor(Executor executor) {
         super(executor);
     }
 

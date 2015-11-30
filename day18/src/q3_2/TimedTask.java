@@ -1,5 +1,7 @@
 package q3_2;
 
+import q3_1.MyExecutor;
+
 import java.util.concurrent.Executor;
 
 public class TimedTask implements Runnable {
@@ -16,8 +18,8 @@ public class TimedTask implements Runnable {
 
     public static void main(String args[]) {
         System.out.println("Starting");
-        Executor me = new MarkExecutor();
-        MarkSerialExecutor e = new MarkSerialExecutor(me);
+        Executor me = new MyExecutor();
+        MySerialExecutor e = new MySerialExecutor(me);
         for (int i = 0; i < 5; i++) {
             Runnable r = new TimedTask(i * 20);
             System.out.println("Max Time is: " + e.getMaxPendingTime());
