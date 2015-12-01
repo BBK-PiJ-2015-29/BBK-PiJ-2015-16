@@ -1,6 +1,3 @@
-package com.example.lambda;
+package quick;
 
-/**
- * @author MikeW
- */
-public enum Gender { MALE, FEMALE }
+public enum Gender {MALE, FEMALE}
