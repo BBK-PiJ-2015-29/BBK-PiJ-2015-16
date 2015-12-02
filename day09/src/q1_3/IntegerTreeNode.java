@@ -2,16 +2,18 @@ package q1_3;
 
 public class IntegerTreeNode {
 
-    private int value;
     private IntegerTreeNode left;
+    private int value;
     private IntegerTreeNode right;
 
     public IntegerTreeNode() {
         left = null;
+        value = 0;
         right = null;
     }
 
     public IntegerTreeNode(int value) {
+        this();
         this.value = value;
     }
 

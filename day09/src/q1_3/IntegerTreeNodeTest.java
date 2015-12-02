@@ -4,10 +4,6 @@ public class IntegerTreeNodeTest {
 
     public static void main(String[] args) {
         IntegerTreeNodeTest ts = new IntegerTreeNodeTest();
-        ts.launch();
-    }
-
-    public void launch() {
 
         // add integers to tree
         IntegerTreeNode itn = new IntegerTreeNode(6);

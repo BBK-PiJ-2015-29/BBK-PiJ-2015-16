@@ -6,13 +6,11 @@ public class IntegerTreeNode {
     private IntegerTreeNode left;
     private IntegerTreeNode right;
 
-    //constructor
     public IntegerTreeNode() {
         left = null;
         right = null;
     }
 
-    //setter
     public IntegerTreeNode(int value) {
         this.value = value;
     }
