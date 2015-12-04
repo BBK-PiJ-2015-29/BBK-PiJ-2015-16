@@ -15,6 +15,4 @@ public class Guitar implements WoodenObject, MusicalInstrument {
     public void bang() {
         System.out.println("BANG");
     }
-
-
 }
