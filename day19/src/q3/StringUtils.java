@@ -1,6 +1,8 @@
+package q3;
+
 public class StringUtils {
     private StringUtils() {
-    } 
+    }
 
     public static int eChecker(String s1, String s2) {
         int compareFlag = 0;

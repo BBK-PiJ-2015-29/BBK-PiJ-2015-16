@@ -1,3 +1,5 @@
+package q3;
+
 public class IsBetterExamples {
     public static void main(String[] args) {
         String test1 = "Hello";
@@ -12,7 +14,7 @@ public class IsBetterExamples {
         System.out.printf(message, test1, test2, "1st arg", result2);
         String result3 =
                 ElementUtils.betterElement(test1, test2,
-                        (s1, s2) -> s1.length() > s2.length());
+                        (String s1, String s2) -> s1.length() > s2.length());
         System.out.printf(message, test1, test2, "length", result3);
         String result4 =
                 ElementUtils.betterElement(test1, test2, (s1, s2) -> true);

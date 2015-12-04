@@ -1,3 +1,5 @@
+package q3;
+
 /**
  * Method that uses the generic TwoElementPredicate, rather than the
  * String-specific TwoStringPredicate.
