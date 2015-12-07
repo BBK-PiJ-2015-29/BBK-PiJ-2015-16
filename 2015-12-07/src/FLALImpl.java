@@ -1,5 +1,5 @@
 
-public class FLALImpl extends AL implements FunctionalList {
+public class FLALImpl extends ArrayList implements FunctionalList {
     @Override
     public ReturnObject head() {
         return null;
