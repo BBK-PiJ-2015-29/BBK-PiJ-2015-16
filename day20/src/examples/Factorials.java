@@ -15,6 +15,7 @@ public class Factorials {
         System.out.println(timer(25, Factorials::factorial));
     }
 
+    // This is a silly comment
     public static long factorialRecursive(int n) {
         if (n > LIMIT) throw new IllegalArgumentException(n + " is out of range");
         return (1 > n) ? 1 : n * factorialRecursive(n - 1);

@@ -15,6 +15,9 @@ public class StudentMain {
 
         s1.setId(2);
         System.out.println(s1);
-        if (s.equals(s1)) System.out.println("same student"); else System.out.println("Not the same");
+        if (s.equals(s1))
+            System.out.println("same student");
+        else
+            System.out.println("Not the same");
     }
 }
