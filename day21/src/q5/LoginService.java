@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface LoginService extends Remote {
 
-    public String login(String user, String password) throws RemoteException;
+    String login(String user) throws RemoteException;
 
-    public String logoff(String user) throws RemoteException;
+    String logoff(String user) throws RemoteException;
 
-    public List<User> getUsers() throws RemoteException;
+    List<User> getUsers() throws RemoteException;
 }

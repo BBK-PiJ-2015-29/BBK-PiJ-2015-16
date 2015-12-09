@@ -2,7 +2,6 @@ package q5;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
-import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.List;
@@ -17,7 +16,7 @@ public class BothServerLauncher {
 
     public void launch() {
         if (System.getSecurityManager() == null) {
-            System.setSecurityManager(new RMISecurityManager());
+            System.setSecurityManager(new SecurityManager());
         }
         try {
             LocateRegistry.createRegistry(1099);
