@@ -1,3 +1,4 @@
 grant codeBase "file:/Users/keith/CloudDocs/Courses/PiJ/BBK-PiJ-2015-16/day21/src" {
     permission java.security.AllPermission;
+    permission java.security.SocketPermission "*:1024-", "accept, resolve";
 };
