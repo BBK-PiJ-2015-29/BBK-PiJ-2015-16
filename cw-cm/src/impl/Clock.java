@@ -1,10 +1,12 @@
 package impl;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.Calendar;
 
 /**
- * A class to provide and set the current time, used by implementations of ContactManager. This can be either
- * the system time, or set to another fixed time (which is useful for testing etc.).
+ * A class to provide and set the current time, used by implementations of ContactManager.
+ * This can be either the system time, or set to another fixed time (which is useful for testing etc.).
  */
 
 public class Clock {
@@ -17,13 +19,14 @@ public class Clock {
      * @return the Calendar containing the current time.
      */
     public static Calendar getCurrent() {
-        return null;
+        throw new NotImplementedException();
     }
 
     /**
      * Sets the current time to that of the system time.
      */
     public static void resetToSystemTime() {
+        throw new NotImplementedException();
     }
 
     /**
@@ -32,6 +35,7 @@ public class Clock {
      * @param fixedTime the time which the ContactManager which consider as the current time.
      */
     public static void setTime(Calendar fixedTime) {
+        throw new NotImplementedException();
     }
 
 }

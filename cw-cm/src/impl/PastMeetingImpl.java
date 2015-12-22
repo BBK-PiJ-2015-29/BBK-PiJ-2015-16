@@ -3,7 +3,9 @@ package impl;
 import spec.Contact;
 import spec.Meeting;
 import spec.PastMeeting;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -18,7 +20,7 @@ import java.util.Set;
  * ContactManagerImpl ensures IDs provided to this are unique.
  */
 
-public class PastMeetingImpl extends MeetingImpl implements PastMeeting {
+public class PastMeetingImpl extends MeetingImpl implements PastMeeting, Serializable {
     /**
      * A constructor to turn a Meeting into and PastMeeting. Note this does not
      * delete the previous meeting but does duplicate its
@@ -29,6 +31,7 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting {
      */
 
     public PastMeetingImpl(Meeting currentMeeting, String notes) {
+        throw new NotImplementedException();
     }
 
     /**
@@ -41,21 +44,21 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting {
      */
 
     public PastMeetingImpl(int id, Calendar date, Set<Contact> attendees, String notes) {
+        throw new NotImplementedException();
     }
 
     @Override
     public String getNotes() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public boolean equals(Object other) {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
     public int hashCode() {
-        return 0;
+        throw new NotImplementedException();
     }
-
 }

@@ -1,6 +1,9 @@
 package impl;
 
 import spec.Contact;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.io.Serializable;
 
 /**
  * Implementation of the Contact interface.
@@ -21,7 +24,7 @@ import spec.Contact;
  * </ul>
  */
 
-public class ContactImpl implements Contact {
+public class ContactImpl implements Contact, Serializable {
 
     /**
      * Creates a Contact. Name and Notes can be null. ID should be ensured that it is unique before it is passed into this method.
@@ -32,21 +35,22 @@ public class ContactImpl implements Contact {
      */
 
     public ContactImpl(int id, String name, String notes) {
+        throw new NotImplementedException();
     }
 
     @Override
     public int getId() {
-        return 0;
+        throw new NotImplementedException();
     }
 
     @Override
     public String getName() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public String getNotes() {
-        return null;
+        throw new NotImplementedException();
     }
 
     /**
@@ -59,16 +63,17 @@ public class ContactImpl implements Contact {
 
     @Override
     public void addNotes(String note) {
+        throw new NotImplementedException();
     }
 
     @Override
     public boolean equals(Object other) {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
     public int hashCode() {
-        return 0;
+        throw new NotImplementedException();
     }
 
 }

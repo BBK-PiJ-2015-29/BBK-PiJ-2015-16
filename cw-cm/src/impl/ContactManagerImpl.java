@@ -5,7 +5,9 @@ import spec.ContactManager;
 import spec.FutureMeeting;
 import spec.Meeting;
 import spec.PastMeeting;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
@@ -41,7 +43,7 @@ import java.util.Set;
  * </ul>
  */
 
-public class ContactManagerImpl implements ContactManager {
+public class ContactManagerImpl implements ContactManager, Serializable {
 
 
     /**
@@ -49,7 +51,8 @@ public class ContactManagerImpl implements ContactManager {
      *
      * @throws IllegalStateException if the data file is not in the correct format
      */
-    public ContactManagerImpl() {
+    public ContactManagerImpl() throws IllegalStateException {
+        throw new NotImplementedException();
     }
 
     /**
@@ -58,7 +61,8 @@ public class ContactManagerImpl implements ContactManager {
      * @param fileLocation the location of the file to be used.
      * @throws IllegalStateException if the data file is not in the correct format
      */
-    public ContactManagerImpl(String fileLocation) {
+    public ContactManagerImpl(String fileLocation) throws IllegalStateException {
+        throw new NotImplementedException();
     }
 
     /**
@@ -68,8 +72,8 @@ public class ContactManagerImpl implements ContactManager {
      */
 
     @Override
-    public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
-        return 0;
+    public int addFutureMeeting(Set<Contact> contacts, Calendar date) throws IllegalArgumentException {
+        throw new NotImplementedException();
     }
 
     /**
@@ -81,7 +85,7 @@ public class ContactManagerImpl implements ContactManager {
      */
     @Override
     public PastMeeting getPastMeeting(int id) {
-        return null;
+        throw new NotImplementedException();
     }
 
     /**
@@ -90,18 +94,18 @@ public class ContactManagerImpl implements ContactManager {
      * Should a meeting be in the future but be of the class PastMeeting, an IllegalArugmentException will be thrown.
      */
     @Override
-    public FutureMeeting getFutureMeeting(int id) {
-        return null;
+    public FutureMeeting getFutureMeeting(int id) throws IllegalArgumentException {
+        throw new NotImplementedException();
     }
 
     @Override
     public Meeting getMeeting(int id) {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public List<Meeting> getFutureMeetingList(Contact contact) {
-        return null;
+        throw new NotImplementedException();
     }
 
     /**
@@ -111,7 +115,7 @@ public class ContactManagerImpl implements ContactManager {
      */
     @Override
     public List<Meeting> getFutureMeetingList(Calendar date) {
-        return null;
+        throw new NotImplementedException();
     }
 
     /**
@@ -124,7 +128,7 @@ public class ContactManagerImpl implements ContactManager {
      */
     @Override
     public List<PastMeeting> getPastMeetingList(Contact contact) {
-        return null;
+        throw new NotImplementedException();
     }
 
     /**
@@ -135,6 +139,7 @@ public class ContactManagerImpl implements ContactManager {
 
     @Override
     public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
+        throw new NotImplementedException();
     }
 
     /**
@@ -145,6 +150,7 @@ public class ContactManagerImpl implements ContactManager {
 
     @Override
     public void addMeetingNotes(int id, String text) {
+        throw new NotImplementedException();
     }
 
     /**
@@ -156,11 +162,12 @@ public class ContactManagerImpl implements ContactManager {
      */
     @Override
     public void addNewContact(String name, String notes) {
+        throw new NotImplementedException();
     }
 
     @Override
     public Set<Contact> getContacts(int... ids) {
-        return null;
+        throw new NotImplementedException();
     }
 
     /**
@@ -170,10 +177,11 @@ public class ContactManagerImpl implements ContactManager {
      */
     @Override
     public Set<Contact> getContacts(String name) {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public void flush() {
+        throw new NotImplementedException();
     }
 }

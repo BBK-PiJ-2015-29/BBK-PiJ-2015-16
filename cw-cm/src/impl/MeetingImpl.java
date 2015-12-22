@@ -2,7 +2,9 @@ package impl;
 
 import spec.Contact;
 import spec.Meeting;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -18,7 +20,11 @@ import java.util.Set;
  */
 
 
-public class MeetingImpl implements Meeting {
+public class MeetingImpl implements Meeting, Serializable {
+
+
+
+    public MeetingImpl(){}
 
     /**
      * Creates a new MeetingImpl. It should be ensured that ID passed into this is unique elsewhere as this class does not ensure uniqueness.
@@ -27,35 +33,33 @@ public class MeetingImpl implements Meeting {
      * @param date      the date of the meeting
      * @param attendees the attendees of the meeting
      */
-
-    public MeetingImpl(){}
-
     public MeetingImpl(int id, Calendar date, Set<Contact> attendees) {
+        throw new NotImplementedException();
     }
 
     @Override
     public int getId() {
-        return 0;
+        throw new NotImplementedException();
     }
 
     @Override
     public Calendar getDate() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public Set<Contact> getContacts() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public boolean equals(Object other) {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
     public int hashCode() {
-        return 0;
+        throw new NotImplementedException();
     }
 
 }
