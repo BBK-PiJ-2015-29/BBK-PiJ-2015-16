@@ -9,21 +9,16 @@ import java.rmi.RemoteException;
 public class LoginClientLauncher {
 
     public static void main(String[] args) {
-        LoginClientLauncher lcl = new LoginClientLauncher();
-        lcl.launch();
-    }
-
-    public void launch() {
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
         }
         try {
             Remote service = Naming.lookup("//127.0.0.1:1099/login");
             LoginService loginService = (LoginService) service;
-            String response = loginService.login("Mark");
+            String response = loginService.login("Fish");
             System.out.println("Response: " + response);
             System.out.println("Response: " + loginService.login("Anna"));
-			System.out.println("Response: " + loginService.logoff("Mark"));
+            System.out.println("Response: " + loginService.logoff("Fish"));
         } catch (MalformedURLException ex) {
             ex.printStackTrace();
         } catch (NotBoundException ex) {

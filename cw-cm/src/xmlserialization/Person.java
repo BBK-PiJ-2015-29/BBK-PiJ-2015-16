@@ -2,6 +2,7 @@ package xmlserialization;
 
 import java.io.Serializable;
 
+@SuppressWarnings("unchecked")
 public class Person implements Serializable {
     private String name;
 

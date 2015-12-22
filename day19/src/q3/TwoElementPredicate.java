@@ -9,6 +9,7 @@ package q3;
  * that works only for Strings.
  */
 
+@FunctionalInterface
 public interface TwoElementPredicate<T> {
     /**
      * Returns true if the first entry is "better" than the second one,

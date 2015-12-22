@@ -21,14 +21,15 @@ import java.io.IOException;
  */
 public class MazePanel extends JPanel {
     private static final long serialVersionUID = 1L;
+    private static final String ROOT = "/Users/keith/CloudDocs/Courses/PiJ/BBK-PiJ-2015-16/cw-temple/res/";
 
-    private static final String ORB_PATH = "res/orb.png";           //Path to orb image
-    private static final String PATH_PATH = "res/path.png";         //Path to image representing path
-    private static final String WALL_PATH = "res/wall.png";         //Path to wall image
-    private static final String COIN_PATH = "res/coins.png";        //Path to the coin image
-    private static final String ENTRANCE_PATH = "res/entrance.png"; //Path to the entrance image
-    private static final String TASTY_PATH = "res/notes.txt";
-    private static final String BACKGROUND_PATH = "res/info_texture.png";
+    private static final String ORB_PATH = ROOT + "orb.png";           //Path to orb image
+    private static final String PATH_PATH = ROOT + "path.png";         //Path to image representing path
+    private static final String WALL_PATH = ROOT + "wall.png";         //Path to wall image
+    private static final String COIN_PATH = ROOT + "coins.png";        //Path to the coin image
+    private static final String ENTRANCE_PATH = ROOT + "entrance.png"; //Path to the entrance image
+    private static final String TASTY_PATH = ROOT + "notes.txt";
+    private static final String BACKGROUND_PATH = ROOT + "info_texture.png";
     private static final float DARK_FACTOR = 0.3f; //How dark should dark path be? Lower values means darker
     private static final int COIN_SPRITES_PER_ROW = 7;
     private static final int COIN_SPRITES_PER_COL = 2;

@@ -61,6 +61,7 @@ public class DemoSerialization {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         List<Person> result = null;
         try {
             result = (List<Person>) d.readObject();

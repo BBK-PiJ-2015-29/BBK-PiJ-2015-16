@@ -12,8 +12,8 @@ public class LoginServer extends UnicastRemoteObject implements LoginService {
     private List<User> users;
 
     public LoginServer() throws RemoteException {
-        users = new LinkedList<User>();
-        users.add(new User("Mark"));
+        users = new LinkedList<>();
+        users.add(new User("Fish"));
         users.add(new User("Anna"));
         users.add(new User("Fred"));
         users.add(new User("Jane"));
@@ -25,7 +25,9 @@ public class LoginServer extends UnicastRemoteObject implements LoginService {
             if (u.getUserName().equals(user)) {
                 u.setLoggedOn(true);
                 u.setTime(LocalDateTime.now());
-                String result = "Hi " + user + ", you are now logged on (" + u.getTime().toString() + ")";
+                String result = "Hi " + user +
+                        ", you are now logged on ("
+                        + u.getTime().toString() + ")";
                 return result;
             }
         }

@@ -14,7 +14,7 @@ public class EchoServerLauncher {
             System.out.println(">2<");
         }
         try {
-            //create the registry if there is not one
+            //Locate the registry
             System.out.println(">3<");
             Registry registry = LocateRegistry.getRegistry();
 

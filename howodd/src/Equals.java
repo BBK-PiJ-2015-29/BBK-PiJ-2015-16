@@ -14,6 +14,7 @@ public class Equals {
 
         if (a == b)
             System.out.println("YES!");
-        else System.out.println("NO");
+        else
+            System.out.println("NO");
     }
 }

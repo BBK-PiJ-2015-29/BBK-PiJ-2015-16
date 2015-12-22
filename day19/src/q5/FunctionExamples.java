@@ -17,6 +17,7 @@ public class FunctionExamples {
         List<String> upperCaseWords =
                 StringUtils.transformedList(words, String::toUpperCase);
         // SAME AS  List<String> upperCaseWords = StringUtils.transformedList(words, s -> s.toUpperCase());
+
         System.out.printf("Uppercase words: %s.%n", upperCaseWords);
         List<String> excitingWords2 =
                 ElementUtils.transformedList(words, s -> s + "!");

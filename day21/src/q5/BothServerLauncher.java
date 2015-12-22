@@ -1,35 +1,29 @@
 package q5;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.List;
 
 
 public class BothServerLauncher {
 
     public static void main(String[] args) {
-        BothServerLauncher bsl = new BothServerLauncher();
-        bsl.launch();
-    }
-
-    public void launch() {
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
         }
         try {
-            LocateRegistry.createRegistry(1099);
-            LoginServer server = new LoginServer();
-            List<User> users = server.getUsers();
-            FingerServer fServer = new FingerServer(users);
+            Registry registry = LocateRegistry.getRegistry();
+            LoginServer loginServer = new LoginServer();
+            List<User> users = loginServer.getUsers();
+            FingerServer fingerServer = new FingerServer(users);
+
             String registryHost = "//localhost/";
             String serviceName = "login";
             String fServiceName = "finger";
-            Naming.rebind(registryHost + serviceName, server);
-            Naming.rebind(registryHost + fServiceName, fServer);
-        } catch (MalformedURLException ex) {
-            ex.printStackTrace();
+
+            registry.rebind(registryHost + serviceName, loginServer);
+            registry.rebind(registryHost + fServiceName, fingerServer);
         } catch (RemoteException ex) {
             ex.printStackTrace();
         }

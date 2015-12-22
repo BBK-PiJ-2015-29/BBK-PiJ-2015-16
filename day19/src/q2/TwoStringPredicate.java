@@ -21,5 +21,5 @@ public interface TwoStringPredicate {
 
     // Using @FunctionalInterface means that if you try to add a second
     // method (as below), you will get a compile-time error in this interface.
-    // public void blah();
+    //void blah();
 }

@@ -24,7 +24,7 @@ public class EchoClientLauncher {
             Registry registry = LocateRegistry.getRegistry("localhost");
             EchoService echoService = (EchoService) registry.lookup(name);
             String receivedEcho = echoService.echo(text);
-            System.out.println("receivedEcho is: " + receivedEcho);
+            System.out.println("received Echo is: " + receivedEcho);
         } catch (NotBoundException ex) {
             ex.printStackTrace();
         } catch (RemoteException ex) {
