@@ -1,20 +1,19 @@
 package q2;
 
 public class SmartPhoneScript {
+    private static MobilePhone myPhone;
 
     public static void main(String[] args) {
-        SmartPhoneScript sps = new SmartPhoneScript();
-        System.out.println();
-        System.out.println("=== 2.1 Start ===");
-        sps.launch1();
-        System.out.println("=== 2.2 Start ===");
-        sps.launch2();
+        test1();
+        test2();
+        test3();
+        test4(myPhone);
+        test5(myPhone);
     }
 
-    //	2.1 Set-up works fine
-    public void launch1() {
+    private static void test1() {
         System.out.println();
-        SmartPhone myPhone = new SmartPhone("nokia");
+        SmartPhone myPhone = new SmartPhone("Samsung");
         System.out.println("Brand: " + myPhone.getBrand());
         myPhone.browseWeb("Page to browse");
         System.out.println(myPhone.findPosition());
@@ -26,10 +25,12 @@ public class SmartPhoneScript {
         System.out.println();
     }
 
-    //	2.2.1 Won't compile these three methods in SmartPhone....
-    public void launch2() {
+    //	2.2 Won't compile these three methods in SmartPhone....
+
+    private static void test2() {
         System.out.println();
-        MobilePhone myPhone = new SmartPhone("nokia");
+
+        myPhone = new SmartPhone("nokia");
         System.out.println("Brand: " + myPhone.getBrand());
 //		myPhone.browseWeb("Page to browse");
 //		System.out.println(myPhone.findPosition());
@@ -39,8 +40,11 @@ public class SmartPhoneScript {
 //		myPhone.playGame("wk 11 game");
         myPhone.ringAlarm("wk 11 alarm");
         System.out.println();
+    }
 
-//	2.2.2 Can fix by DIRECT UPCASTING to a SmartPhone....
+//	2.2 Can fix by DIRECT UPCASTING to a SmartPhone....
+
+    private static void test3() {
 
         System.out.println("===> ====> NOW UPCAST ====> ====>");
         SmartPhone mySmartPhone = (SmartPhone) myPhone;
@@ -53,20 +57,14 @@ public class SmartPhoneScript {
         mySmartPhone.playGame("wk 11 game");
         mySmartPhone.ringAlarm("wk 11 alarm");
         System.out.println();
-
-        // for 2.3
-        testPhone1(myPhone);
-        // for 2.4 and 2.5
-        testPhone2(myPhone);
     }
 
 //	2.3 INDIRECT UPCASTING when calling a method
 
 
     //	will only do call(), which is the only one in the interface Phone
-    public void testPhone1(Phone p) {
+    private static void test4(Phone p) {
 
-        System.out.println("=== 2.3 Start ===");
 //		System.out.println("Brand: " + p.getBrand());
 //		p.browseWeb("Page to browse");
 //		System.out.println(p.findPosition());
@@ -80,7 +78,7 @@ public class SmartPhoneScript {
 
 //	2.4/2.5	and then DOWNCASTING within the method so can use all methods
 
-    public void testPhone2(Phone p) {
+    private static void test5(Phone p) {
 
         System.out.println("=== 2.4 Start ===");
         SmartPhone sp = (SmartPhone) p;
@@ -94,10 +92,7 @@ public class SmartPhoneScript {
         sp.ringAlarm("wk 11 alarm");
         System.out.println();
     }
-
-
 }
-
 
 
 
