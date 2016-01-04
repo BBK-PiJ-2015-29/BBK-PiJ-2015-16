@@ -18,24 +18,16 @@ public class MobilePhone extends OldPhone {
     }
 
     public void ringAlarm(String alarm) {
-
         System.out.println("WAKE UP (from MobilePhone): " + alarm);
-
     }
 
 
     private void playGame(String game) {
-
         System.out.println("PLAY (from MobilePhone): " + game);
-
     }
 
     public void printLastNumbers() {
-
         System.out.println("=== LAST 10 NUMBERS (from MobilePhone) ===");
         System.out.println(" 1: " + lastNumber);
-
     }
-
-
 }

@@ -4,15 +4,14 @@ public class SmartPhoneScript {
     private static MobilePhone myPhone;
 
     public static void main(String[] args) {
-        test1();
+//        test1();
         test2();
-        test3();
-        test4(myPhone);
-        test5(myPhone);
+//        test3();
+//        test4(myPhone);
+//        test5(myPhone);
     }
 
     private static void test1() {
-        System.out.println();
         SmartPhone myPhone = new SmartPhone("Samsung");
         System.out.println("Brand: " + myPhone.getBrand());
         myPhone.browseWeb("Page to browse");
@@ -28,9 +27,7 @@ public class SmartPhoneScript {
     //	2.2 Won't compile these three methods in SmartPhone....
 
     private static void test2() {
-        System.out.println();
-
-        myPhone = new SmartPhone("nokia");
+        myPhone = new SmartPhone("Samsung");
         System.out.println("Brand: " + myPhone.getBrand());
 //		myPhone.browseWeb("Page to browse");
 //		System.out.println(myPhone.findPosition());
@@ -47,15 +44,15 @@ public class SmartPhoneScript {
     private static void test3() {
 
         System.out.println("===> ====> NOW UPCAST ====> ====>");
-        SmartPhone mySmartPhone = (SmartPhone) myPhone;
-        System.out.println("Brand: " + mySmartPhone.getBrand());
-        mySmartPhone.browseWeb("Page to browse");
-        System.out.println(mySmartPhone.findPosition());
-        mySmartPhone.call("1234");
-        mySmartPhone.printLastNumbers();
-        mySmartPhone.call("001234");
-        mySmartPhone.playGame("wk 11 game");
-        mySmartPhone.ringAlarm("wk 11 alarm");
+        // SmartPhone mySmartPhone = (SmartPhone) myPhone;
+        System.out.println("Brand: " + myPhone.getBrand());
+        ((SmartPhone) myPhone).browseWeb("Page to browse");
+        System.out.println(((SmartPhone) myPhone).findPosition());
+        myPhone.call("1234");
+        myPhone.printLastNumbers();
+        myPhone.call("001234");
+        ((SmartPhone) myPhone).playGame("wk 11 game");
+        myPhone.ringAlarm("wk 11 alarm");
         System.out.println();
     }
 
@@ -64,8 +61,7 @@ public class SmartPhoneScript {
 
     //	will only do call(), which is the only one in the interface Phone
     private static void test4(Phone p) {
-
-//		System.out.println("Brand: " + p.getBrand());
+//        System.out.println("Brand: " + p.getBrand());
 //		p.browseWeb("Page to browse");
 //		System.out.println(p.findPosition());
         p.call("1234");
@@ -76,7 +72,7 @@ public class SmartPhoneScript {
         System.out.println();
     }
 
-//	2.4/2.5	and then DOWNCASTING within the method so can use all methods
+//	2.4	and then DOWNCASTING within the method so can use all methods
 
     private static void test5(Phone p) {
 
