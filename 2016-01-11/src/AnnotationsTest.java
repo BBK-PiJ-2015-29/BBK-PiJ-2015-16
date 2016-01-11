@@ -1,5 +1,3 @@
-package first;
-
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,30 +15,30 @@ public class AnnotationsTest {
 
     @BeforeClass
     public static void onceExecutedBeforeAll() {
-        System.out.println("@BeforeClass: onceExecutedBeforeAll");
+        System.err.println("@BeforeClass: onceExecutedBeforeAll");
     }
 
     @AfterClass
     public static void onceExecutedAfterAll() {
-        System.out.println("@AfterClass: onceExecutedAfterAll");
+        System.err.println("@AfterClass: onceExecutedAfterAll");
     }
 
     @Before
     public void executedBeforeEach() {
         testList = new ArrayList();
-        System.out.println("@Before: executedBeforeEach");
+        System.err.println("@Before: executedBeforeEach");
     }
 
     @After
     public void executedAfterEach() {
         testList.clear();
-        System.out.println("@After: executedAfterEach");
+        System.err.println("@After: executedAfterEach");
     }
 
     @Test
     public void EmptyCollection() {
         assertTrue(testList.isEmpty());
-        System.out.println("@Test: EmptyArrayList");
+        System.err.println("@Test: EmptyArrayList");
 
     }
 
@@ -48,12 +46,11 @@ public class AnnotationsTest {
     public void OneItemCollection() {
         testList.add("oneItem");
         assertEquals(1, testList.size());
-        System.out.println("@Test: OneItemArrayList");
+        System.err.println("@Test: OneItemArrayList");
     }
 
     @Ignore
     public void executionIgnored() {
-
-        System.out.println("@Ignore: This execution is ignored");
+        System.err.println("@Ignore: This execution is ignored");
     }
 }
