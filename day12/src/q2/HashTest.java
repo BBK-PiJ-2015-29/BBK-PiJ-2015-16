@@ -3,12 +3,12 @@ package q2;
 import org.junit.Before;
 import org.junit.Test;
 
+import static java.lang.Math.random;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
 public class HashTest {
-
     HashUtilities hu;
 
     @Before
@@ -19,7 +19,7 @@ public class HashTest {
     @Test
     public void testsInRange() {
         for (int i = 0; i < 20000; i++) {
-            int input = (int) (Math.random() * 1000000000);
+            int input = (int) (random() * 1000000000);
             int output = hu.shortHash(input);
             boolean expected = (output >= 0 && output <= 999);
             assertTrue("out of range", expected);

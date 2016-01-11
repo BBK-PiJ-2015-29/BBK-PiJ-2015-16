@@ -17,24 +17,24 @@ public class PersonTest {
     @Test
     public void testsNormalName() {
         String output = p.getInitials("Jo Robert John");
-        assertEquals(output, "DRY");
+        assertEquals("JRJ", output);
     }
 
     @Test
     public void testsOneExtraSpaceMiddleName() {
         String output = p.getInitials("Jo  Robert John");
-        assertEquals(output, "DRY");
+        assertEquals("JRJ", output);
     }
 
     @Test
     public void testsManyExtraSpaceMiddleName() {
-        String output = p.getInitials("Jo      Robert John");
-        assertEquals(output, "DRY");
+        String output = p.getInitials("Jo Robert   John");
+        assertEquals("JRJ", output);
     }
 
     @Test
     public void testsExtraSpaceAtFrontName() {
         String output = p.getInitials("     Jo Robert John");
-        assertEquals(output, "DRY");
+        assertEquals("JRJ", output);
     }
 }
