@@ -1,83 +1,60 @@
 package mergesort;
 
-import java.util.ArrayList;
-import java.util.List;
+public class Mergesort {
+    private int[] numbers;
+    private int[] helper;
 
-public class MergeSort {
+    private int number;
 
-    private int length;
-
-    public static void main(String[] args) {
-        MergeSort ms = new MergeSort();
-        ms.launch();
+    public void sort(int[] values) {
+        this.numbers = values;
+        number = values.length;
+        this.helper = new int[number];
+        mergesort(0, number - 1);
     }
 
-    public void launch() {
-        List<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 10; i++) {
-            list.add((int) Math.abs(10000 * Math.random()));
+    private void mergesort(int low, int high) {
+        // check if low is smaller then high, if not then the array is sorted
+        if (low < high) {
+            // Get the index of the element which is in the middle
+            int middle = low + (high - low) / 2;
+            // Sort the left side of the array
+            mergesort(low, middle);
+            // Sort the right side of the array
+            mergesort(middle + 1, high);
+            // Combine them both
+            merge(low, middle, high);
         }
-        printList(list);
-        System.out.println("=> => =>");
-        list = sort(list);
-        printList(list);
     }
 
-    public List<Integer> sort(List list) {
-        if (list.size() <= 1) {
-            return list;
-        }
-        //split array in half
-        List<Integer> front = new ArrayList<Integer>();
-        List<Integer> back = new ArrayList<Integer>();
-        for (int i = 0; i < list.size() / 2; i++) {
-            int z = (int) list.get(i);
-            front.add(z);
-        }
-        for (int i = list.size() / 2; i < list.size(); i++) {
-            int z = (int) list.get(i);
-            back.add(z);
-        }
-        //sort each half
-        sort(front);
-        sort(back);
+    private void merge(int low, int middle, int high) {
 
-        //integration
-        int frontCount = 0;
-        int backCount = 0;
-        int buildListIndex = 0;
-        while (frontCount < front.size() && backCount < back.size()) {
-            if (front.get(frontCount) < back.get(backCount)) {
-                int z = (int) front.get(frontCount);
-                list.set(buildListIndex, z);
-                frontCount++;
+        // Copy both parts into the helper array
+        for (int i = low; i <= high; i++) {
+            helper[i] = numbers[i];
+        }
+
+        int i = low;
+        int j = middle + 1;
+        int k = low;
+        // Copy the smallest values from either the left or the right side back
+        // to the original array
+        while (i <= middle && j <= high) {
+            if (helper[i] <= helper[j]) {
+                numbers[k] = helper[i];
+                i++;
             } else {
-                int z = (int) back.get(backCount);
-                list.set(buildListIndex, z);
-                backCount++;
+                numbers[k] = helper[j];
+                j++;
             }
-            buildListIndex++;
+            k++;
+        }
+        // Copy the rest of the left side of the array into the target array
+        while (i <= middle) {
+            numbers[k] = helper[i];
+            k++;
+            i++;
         }
 
-        while (frontCount < front.size()) {
-            int z = (int) front.get(frontCount);
-            list.set(buildListIndex, z);
-            frontCount++;
-            buildListIndex++;
-        }
-        while (backCount < back.size()) {
-            int z = (int) back.get(backCount);
-            list.set(buildListIndex, z);
-            backCount++;
-            buildListIndex++;
-        }
-        return list;
-    }
-
-    public void printList(List list) {
-        for (int i = 0; i < list.size(); i++) {
-            System.out.print(list.get((i)) + " < ");
-        }
-        System.out.println();
     }
 }
