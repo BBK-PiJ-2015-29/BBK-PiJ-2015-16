@@ -1,4 +1,4 @@
-package x3_hailstone_Numbers;
+package hailstone;
 
 import java.util.ArrayList;
 import java.util.List;

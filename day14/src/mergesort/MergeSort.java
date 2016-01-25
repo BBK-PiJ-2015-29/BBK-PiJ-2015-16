@@ -1,4 +1,4 @@
-package x5_mergeSort;
+package mergesort;
 
 import java.util.ArrayList;
 import java.util.List;
