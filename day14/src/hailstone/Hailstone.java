@@ -9,15 +9,11 @@ public class Hailstone {
 
     public static void main(String[] args) {
         Hailstone h = new Hailstone();
-        h.launch();
-    }
+        h.result = new ArrayList<>();
+        h.hail(3);
 
-    public void launch() {
-        result = new ArrayList<Integer>();
-        hail(77);
-        for (int i = 0; i < result.size(); i++) {
-            System.out.println(result.get(i));
-        }
+        for (Integer i : h.result)
+            System.out.println(i);
     }
 
     public void hail(int n) {
@@ -27,11 +23,9 @@ public class Hailstone {
             n = 3 * n + 1;
         }
         result.add(n);
-        if (n == 1) {
+        if (n == 1)
             return;
-        } else {
-            hail(n);
-        }
+        hail(n);
         return;
     }
 
