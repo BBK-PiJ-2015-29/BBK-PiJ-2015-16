@@ -7,7 +7,7 @@ public class GenericSortedList<T extends Number> extends GenericDoubleLinkedList
 
     @Override
     public void addItem(T value) {
-        GenericDoubleListItem<T> item = new GenericSortedListItem<T>(value);
+        GenericDoubleListItem<T> item = new GenericSortedListItem<>(value);
         if (super.getFirstItem() == null) super.setFirstItem(item);
         else super.getFirstItem().addItem(item);
     }

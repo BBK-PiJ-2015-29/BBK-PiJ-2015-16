@@ -6,8 +6,6 @@ import static org.junit.Assert.assertEquals;
 
 public class UserImplTest {
 
-    // tests for 1.1 and 1.2
-
     @Test
     public void testConstructorAndGetterForName() {
         User u = new UserImpl("Anna");

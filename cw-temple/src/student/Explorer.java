@@ -6,9 +6,8 @@ import game.ExplorationState;
 public class Explorer {
 
     /**
-     * Explore the cavern, trying to find the
-     * orb in as few steps as possible. Once you find the
-     * orb, you must return from the function in order to pick
+     * Explore the cavern, trying to find the orb in as few steps as possible.
+     * Once you find the orb, you must return from the function in order to pick
      * it up. If you continue to move after finding the orb rather
      * than returning, it will not count.
      * If you return from this function while not standing on top of the orb,
@@ -21,8 +20,11 @@ public class Explorer {
      * open neighbor tiles, as well as the distance to the orb at each of these tiles
      * (ignoring walls and obstacles).
      * <p>
-     * In order to get information about the current state, use functions
-     * getCurrentLocation(), getNeighbours(), and getDistanceToTarget() in ExplorationState.
+     * To get information about the current state, use functions
+     * getCurrentLocation(),
+     * getNeighbours(), and
+     * getDistanceToTarget()
+     * in ExplorationState.
      * You know you are standing on the orb when getDistanceToTarget() is 0.
      * <p>
      * Use function moveTo(long id) in ExplorationState to move to a neighboring

@@ -1,7 +1,7 @@
 package q1_2;
 
 
-import q1.MobilePhone;
+import q1_1.MobilePhone;
 
 public class SmartPhone extends MobilePhone {
     private final static int START = 0;

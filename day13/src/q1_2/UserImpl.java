@@ -2,7 +2,7 @@ package q1_2;
 
 public class UserImpl implements User {
 
-    private String name;
+    private final String name;
     private int ID;
 
     public UserImpl(String name) {
