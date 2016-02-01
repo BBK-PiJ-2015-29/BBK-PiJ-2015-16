@@ -1,4 +1,6 @@
-package codeflow;/*
+package codeflow;
+
+/*
 
 user input is 0
 
@@ -48,35 +50,21 @@ import java.util.List;
 
 public class CodeFlow {
 
-    public static void main(String[] args) {
+    public static void main(String... args) {
         CodeFlow cf = new CodeFlow();
         cf.launch(6);
     }
 
-
     public void launch(int userInput) {
 
-        List<Integer> intList = new ArrayList<Integer>();
-        intList.add(1);
-        intList.add(2);
-        intList.add(3);
-        intList.add(4);
-        intList.add(5);
-        intList.add(6);
+        List<Integer> intList = new ArrayList<>();
+        for (int i = 1; i < 7; i++)
+            intList.add(i);
+
         try {
-            intList.remove(0);
-            System.out.println(intList.get(userInput));
-            intList.remove(0);
-            System.out.println(intList.get(userInput));
-            intList.remove(0);
-            System.out.println(intList.get(userInput));
-            intList.remove(0);
-            System.out.println(intList.get(userInput));
-            intList.remove(0);
-            System.out.println(intList.get(userInput));
-            intList.remove(0);
-            System.out.println(intList.get(userInput));
-            intList.remove(0);
+            // designed to break
+            for (int i = 1; i < 10; i++)
+                intList.remove(0);
             System.out.println(intList.get(userInput));
         } catch (IndexOutOfBoundsException ex) {
             ex.printStackTrace();
