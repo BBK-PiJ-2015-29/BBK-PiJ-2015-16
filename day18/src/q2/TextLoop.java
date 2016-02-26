@@ -1,4 +1,4 @@
-package q1_2;
+package q2;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
