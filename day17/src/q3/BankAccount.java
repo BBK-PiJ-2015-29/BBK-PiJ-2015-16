@@ -1,4 +1,4 @@
-package q3_bank_account;
+package q3;
 
 //	- could get wrong balance?
 // could add the money to someone ele's balance?

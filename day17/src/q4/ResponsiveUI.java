@@ -1,4 +1,4 @@
-package q4_responsiveui;
+package q4;
 
 import java.util.Scanner;
 
@@ -23,7 +23,7 @@ public class ResponsiveUI implements Runnable {
             Thread t = new Thread(new ResponsiveUI(newTime, i));
             t.start();
             if (!buffer.equals("")) {
-                System.out.println("Finished tasks: " + buffer);
+                System.out.println("Finished task: " + buffer);
                 buffer = "";
             }
         }
@@ -36,7 +36,6 @@ public class ResponsiveUI implements Runnable {
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-//        System.out.println("Finished Task: " + taskId);
         synchronized (buffer) {
             if (!buffer.equals(""))
                 buffer += "," + taskId;

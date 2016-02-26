@@ -1,4 +1,4 @@
-package q2_counting;
+package q2;
 
 public class Increaser implements Runnable {
 

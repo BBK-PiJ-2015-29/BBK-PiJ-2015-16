@@ -1,4 +1,4 @@
-package q5_parallel_computation;
+package q5;
 
 import java.util.Random;
 

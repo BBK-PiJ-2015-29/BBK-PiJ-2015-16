@@ -1,4 +1,4 @@
-package q1_text_loops;
+package q1;
 
 public class TextMain {
     private final static int SIZE = 10;

@@ -1,4 +1,4 @@
-package q6_immutability;
+package q6;
 
 import java.awt.image.BufferedImage;
 import java.text.DateFormat;

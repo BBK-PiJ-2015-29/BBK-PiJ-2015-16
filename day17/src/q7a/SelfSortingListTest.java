@@ -1,4 +1,4 @@
-package q7_selforderinglist_a;
+package q7a;
 
 public class SelfSortingListTest {
 

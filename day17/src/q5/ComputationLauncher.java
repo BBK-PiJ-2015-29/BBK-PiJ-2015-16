@@ -1,4 +1,4 @@
-package q5_parallel_computation;
+package q5;
 
 /**
  * This class launched two heavy computations

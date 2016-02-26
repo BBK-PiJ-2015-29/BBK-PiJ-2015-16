@@ -6,11 +6,13 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
 
+// some horrible coding here but heck - fast and dirty!
+
 public class ExecutorImpl implements Executor {
     static int runNum = 1;
     int threadNum;
     BlockingQueue<Runnable> queue;
-    List<Thread> threads = new ArrayList<Thread>();
+    List<Thread> threads = new ArrayList<>();
     List<ExecutorImplThread> scripts = new ArrayList<>();
 
     public ExecutorImpl(int threadNum, int maxQueueSize) {
