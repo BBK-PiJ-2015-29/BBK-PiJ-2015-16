@@ -13,18 +13,16 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Random;
 
+import static game.Constants.EXTRA_TIME_FACTOR;
+import static game.Constants.MAX_BONUS;
+import static game.Constants.MAX_COLS;
+import static game.Constants.MAX_ROWS;
+import static game.Constants.MIN_BONUS;
+import static game.Constants.MIN_COLS;
+import static game.Constants.MIN_ROWS;
+import static game.Constants.NO_BONUS_LENGTH;
+
 public class GameState implements ExplorationState, EscapeState {
-
-    public static final int MIN_ROWS = 8;
-    public static final int MAX_ROWS = 25;
-    public static final int MIN_COLS = 12;
-    public static final int MAX_COLS = 40;
-
-    public static final double MIN_BONUS = 1.0;
-    public static final double MAX_BONUS = 1.3;
-
-    private static final double EXTRA_TIME_FACTOR = 0.3;     //bigger is nicer - addition to total multiplier
-    private static final double NO_BONUS_LENGTH = 3;
 
     private final Cavern exploreCavern;
     private final Cavern escapeCavern;
@@ -65,7 +63,7 @@ public class GameState implements ExplorationState, EscapeState {
      * Constructor: a random instance with a GUI only if useGUI is true.
      */
     private GameState(boolean useGui) {
-        this((new Random()).nextLong(), useGui);
+        this((new Random()).nextLong(), useGui);   // dodgy code - should reuse the random number
     }
 
     /**
