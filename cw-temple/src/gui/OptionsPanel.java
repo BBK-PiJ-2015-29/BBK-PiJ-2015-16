@@ -1,7 +1,5 @@
 package gui;
 
-import game.GameState;
-
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,6 +14,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
+
+import static game.Constants.MAX_BONUS;
 
 public class OptionsPanel extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
@@ -54,7 +54,7 @@ public class OptionsPanel extends JPanel implements ActionListener {
         this.seed = seed;
 
         speedLabel = new JLabel("Speed:");
-        bonusLabel = new JLabel("Bonus: " + GameState.MAX_BONUS);
+        bonusLabel = new JLabel("Bonus: " + MAX_BONUS);
         coinsLabel = new JLabel("Coins: 0");
         scoreLabel = new JLabel("Score: 0");
         timeRemainingLabel = new JLabel("Time Remaining: 0");
