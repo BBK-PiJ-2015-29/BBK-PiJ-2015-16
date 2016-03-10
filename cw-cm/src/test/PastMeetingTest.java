@@ -1,6 +1,6 @@
 package test;
 
-import impl.MeetingImpl;
+import impl.PastMeetingImpl;
 import interfaces.Contact;
 import interfaces.PastMeeting;
 import org.junit.Before;
@@ -26,7 +26,7 @@ public class PastMeetingTest {
         contacts = new HashSet<Contact>();
         contacts.add(new MockContactImpl());
         contacts.add(new MockContactImpl());
-        pastMeeting = new MeetingImpl(pastDate, contacts);
+        pastMeeting = new PastMeetingImpl(pastDate, contacts);
     }
 
     @Test

@@ -7,59 +7,44 @@ import interfaces.ContactManager;
 import interfaces.FutureMeeting;
 import interfaces.Meeting;
 import interfaces.PastMeeting;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 public class ContactManagerTest {
 
-    private static final String FILENAME = "test.txt";
-
-    ContactManager contactManager;
-    Calendar nowDate;
-    Calendar pastDate;
-    Calendar futureDate;
+    private ContactManager contactManager;
+    private Calendar nowDate;
+    private Calendar pastDate;
+    private Calendar futureDate;
 
 
     @Before
     public void setUp() {
-        contactManager = new ContactManagerImpl(FILENAME);
+        contactManager = new ContactManagerImpl();
         nowDate = Calendar.getInstance();
         pastDate = Calendar.getInstance();
         pastDate.add(Calendar.YEAR, -1);
         futureDate = Calendar.getInstance();
         futureDate.add(Calendar.YEAR, 1);
-    }
-
-    @After
-    public void cleanUp() {
-        System.out.println(contactManager);
-        File file = new File(FILENAME);
-        file.delete();
     }
 
     @Test
@@ -222,10 +207,9 @@ public class ContactManagerTest {
 
     @Test
     public void testAddFutureDateReturnsId() {
+        Contact mike = new ContactImpl("mike","notes");
         contactManager.addNewContact("mike", "notes");
         Set<Contact> mikeSet = contactManager.getContacts("mike");
-        Iterator<Contact> it = mikeSet.iterator();
-        Contact mike = it.next();
 
         int mikeMeetingId = contactManager.addFutureMeeting(mikeSet, futureDate);
         List<Meeting> returnedMeetings = contactManager.getFutureMeetingList(mike);
@@ -283,18 +267,6 @@ public class ContactManagerTest {
         }
     }
 
-    //@Test
-    //public void testAddNewPastMeetingFutureDateThrowsException() {
-    //  contactManager.addNewContact("mike", "notes");
-    //  Set<Contact> mike = contactManager.getContacts("mike");
-    //  try {
-    //    contactManager.addFutureMeeting(mike, futureDate, "text");
-    //    fail();
-    //  } catch (IllegalArgumentException e) {
-    //
-    //  }
-    //}
-
     @Test
     public void testGetPastMeetingListContactNotFoundThrowsException() {
         contactManager.addNewContact("mike", "notes");
@@ -303,7 +275,7 @@ public class ContactManagerTest {
 
         Contact sue = new ContactImpl("sue", "notes");
         try {
-            contactManager.getPastMeetingList(sue);
+            contactManager.getPastMeetingListFor(sue);
             fail();
         } catch (IllegalArgumentException e) {
 
@@ -322,7 +294,7 @@ public class ContactManagerTest {
 
         contactManager.addNewPastMeeting(sueSet, pastDate, "text");
         contactManager.addNewPastMeeting(bothSet, pastDate, "text");
-        List<PastMeeting> returnedMeetings = contactManager.getPastMeetingList(mike);
+        List<PastMeeting> returnedMeetings = contactManager.getPastMeetingListFor(mike);
 
         assertEquals(1, returnedMeetings.size());
         assertTrue(returnedMeetings.get(0).getContacts().contains(mike));
@@ -345,7 +317,7 @@ public class ContactManagerTest {
         contactManager.addNewPastMeeting(mikeSet, threeYearAgoDate, "text");
         contactManager.addNewPastMeeting(mikeSet, oneYearAgoDate, "text");
         contactManager.addNewPastMeeting(mikeSet, twoYearAgoDate, "text");
-        List<PastMeeting> returnedMeetings = contactManager.getPastMeetingList(mike);
+        List<PastMeeting> returnedMeetings = contactManager.getPastMeetingListFor(mike);
 
         assertEquals(threeYearAgoDate, returnedMeetings.get(0).getDate());
         assertEquals(twoYearAgoDate, returnedMeetings.get(1).getDate());
@@ -369,7 +341,7 @@ public class ContactManagerTest {
         contactManager.addFutureMeeting(mikeSet, futureDate);
 
         List<Meeting> futureMeetings = contactManager.getFutureMeetingList(mike);
-        List<Meeting> returnedFutureMeetings = contactManager.getFutureMeetingList(futureDate);
+        List<Meeting> returnedFutureMeetings = contactManager.getMeetingListOn(futureDate);
 
         assertEquals(3, returnedFutureMeetings.size());
         assertTrue(returnedFutureMeetings.contains(futureMeetings.get(0)));
@@ -391,8 +363,8 @@ public class ContactManagerTest {
         contactManager.addFutureMeeting(mikeSet, futureDate);
         contactManager.addFutureMeeting(mikeSet, futureDate);
 
-        List<PastMeeting> pastMeetings = contactManager.getPastMeetingList(mike);
-        List<Meeting> returnedPastMeetings = contactManager.getFutureMeetingList(pastDate);
+        List<PastMeeting> pastMeetings = contactManager.getPastMeetingListFor(mike);
+        List<Meeting> returnedPastMeetings = contactManager.getMeetingListOn(pastDate);
 
         assertEquals(3, returnedPastMeetings.size());
         assertTrue(returnedPastMeetings.contains((Meeting) pastMeetings.get(0)));
@@ -432,7 +404,7 @@ public class ContactManagerTest {
 
         contactManager.addNewPastMeeting(mikeSet, pastDate, "notes");
 
-        List<PastMeeting> pastMeetingList = contactManager.getPastMeetingList(mike);
+        List<PastMeeting> pastMeetingList = contactManager.getPastMeetingListFor(mike);
         PastMeeting pastMeeting = pastMeetingList.get(0);
         int pastMeetingId = pastMeeting.getId();
 
@@ -457,7 +429,7 @@ public class ContactManagerTest {
 
         contactManager.addNewPastMeeting(mikeSet, pastDate, "notes");
 
-        List<PastMeeting> pastMeetingList = contactManager.getPastMeetingList(mike);
+        List<PastMeeting> pastMeetingList = contactManager.getPastMeetingListFor(mike);
         int pastMeetingId = pastMeetingList.get(0).getId();
 
         try {
@@ -502,7 +474,7 @@ public class ContactManagerTest {
         contactManager.addNewPastMeeting(mikeSet, pastDate, "notes");
         contactManager.addFutureMeeting(mikeSet, futureDate);
 
-        List<PastMeeting> pastMeetingList = contactManager.getPastMeetingList(mike);
+        List<PastMeeting> pastMeetingList = contactManager.getPastMeetingListFor(mike);
         Meeting pastMeeting = (Meeting) pastMeetingList.get(0);
         int pastMeetingId = pastMeeting.getId();
 
@@ -539,7 +511,7 @@ public class ContactManagerTest {
         Contact mike = it.next();
 
         contactManager.addNewPastMeeting(mikeSet, pastDate, "notes");
-        List<PastMeeting> pastMeetingList = contactManager.getPastMeetingList(mike);
+        List<PastMeeting> pastMeetingList = contactManager.getPastMeetingListFor(mike);
         int pastMeetingId = pastMeetingList.get(0).getId();
 
         try {
@@ -583,7 +555,7 @@ public class ContactManagerTest {
         Contact mike = it.next();
 
         contactManager.addNewPastMeeting(mikeSet, pastDate, "Notes 1");
-        List<PastMeeting> pastMeetingList = contactManager.getPastMeetingList(mike);
+        List<PastMeeting> pastMeetingList = contactManager.getPastMeetingListFor(mike);
         int pastMeetingId = pastMeetingList.get(0).getId();
 
         contactManager.addMeetingNotes(pastMeetingId, "Notes 2");
@@ -625,270 +597,6 @@ public class ContactManagerTest {
         }
     }
 
-    @Test
-    public void testFlush() {
-        contactManager.addNewContact("mike", "mike notes");
-        contactManager.addNewContact("sue", "sue notes");
-        Set<Contact> contactsSet = contactManager.getContacts("");
-
-        contactManager.addFutureMeeting(contactsSet, futureDate);
-
-        contactManager.flush();
-    }
-
-    /**
-     * Test assumes flush() uses java serialization, to a file called contacts.txt.
-     */
-    @Test
-    public void testFlushSavesContacts() {
-        contactManager.addNewContact("mike", "mike notes");
-        contactManager.addNewContact("sue", "sue notes");
-        Contact mike = contactManager.getContacts("mike").iterator().next();
-        Contact sue = contactManager.getContacts("sue").iterator().next();
-
-        contactManager.flush();
-
-        ObjectInputStream d = null;
-        try {
-            d = new ObjectInputStream(
-                    new BufferedInputStream(
-                            new FileInputStream(FILENAME)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ContactManager deserializedContactManager = null;
-        try {
-            deserializedContactManager = (ContactManager) d.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            d.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Contact deserializedMike = deserializedContactManager.getContacts("mike").iterator().next();
-        Contact deserializedSue = deserializedContactManager.getContacts("sue").iterator().next();
-
-        assertEquals(mike.getId(), deserializedMike.getId());
-        assertEquals(mike.getNotes(), deserializedMike.getNotes());
-        assertEquals(sue.getId(), deserializedSue.getId());
-        assertEquals(sue.getNotes(), deserializedSue.getNotes());
-    }
-
-    /**
-     * Test assumes flush() uses java serialization, to a file called contacts.txt.
-     */
-    @Test
-    public void testFlushSavesPastMeetings() {
-        contactManager.addNewContact("mike", "mike notes");
-        contactManager.addNewContact("sue", "sue notes");
-        Set<Contact> mikeSet = contactManager.getContacts("mike");
-        Iterator<Contact> itMike = mikeSet.iterator();
-        Contact mike = itMike.next();
-        Set<Contact> sueSet = contactManager.getContacts("sue");
-        Iterator<Contact> itSue = sueSet.iterator();
-        Contact sue = itSue.next();
-
-        contactManager.addNewPastMeeting(mikeSet, pastDate, "mike meeting");
-        int mikeMeetingId = contactManager.getPastMeetingList(mike).get(0).getId();
-        contactManager.addNewPastMeeting(sueSet, pastDate, "sue meeting");
-        int sueMeetingId = contactManager.getPastMeetingList(sue).get(0).getId();
-
-        contactManager.flush();
-
-        ObjectInputStream d = null;
-        try {
-            d = new ObjectInputStream(
-                    new BufferedInputStream(
-                            new FileInputStream(FILENAME)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ContactManager deserializedContactManager = null;
-        try {
-            deserializedContactManager = (ContactManager) d.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            d.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Contact deserializedMike = deserializedContactManager.getContacts("mike").iterator().next();
-        Contact deserializedSue = deserializedContactManager.getContacts("sue").iterator().next();
-
-        List<PastMeeting> mikePastMeetingList = deserializedContactManager.getPastMeetingList(deserializedMike);
-        List<PastMeeting> suePastMeetingList = deserializedContactManager.getPastMeetingList(deserializedSue);
-
-        assertEquals(1, mikePastMeetingList.size());
-        assertEquals(pastDate, mikePastMeetingList.get(0).getDate());
-        assertEquals("mike meeting", mikePastMeetingList.get(0).getNotes());
-        assertEquals(mikeMeetingId, mikePastMeetingList.get(0).getId());
-
-        assertEquals(1, suePastMeetingList.size());
-        assertEquals(pastDate, suePastMeetingList.get(0).getDate());
-        assertEquals("sue meeting", suePastMeetingList.get(0).getNotes());
-        assertEquals(sueMeetingId, suePastMeetingList.get(0).getId());
-    }
-
-    /**
-     * Test assumes flush() uses java serialization, to a file called contacts.txt.
-     */
-    @Test
-    public void testFlushSavesFutureMeetings() {
-        contactManager.addNewContact("mike", "mike notes");
-        contactManager.addNewContact("sue", "sue notes");
-        Set<Contact> mikeSet = contactManager.getContacts("mike");
-        Set<Contact> sueSet = contactManager.getContacts("sue");
-
-        int mikeMeetingId = contactManager.addFutureMeeting(mikeSet, futureDate);
-        int sueMeetingId = contactManager.addFutureMeeting(sueSet, futureDate);
-
-        contactManager.flush();
-
-        ObjectInputStream d = null;
-        try {
-            d = new ObjectInputStream(
-                    new BufferedInputStream(
-                            new FileInputStream(FILENAME)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ContactManager deserializedContactManager = null;
-        try {
-            deserializedContactManager = (ContactManager) d.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            d.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Contact deserializedMike = deserializedContactManager.getContacts("mike").iterator().next();
-        Contact deserializedSue = deserializedContactManager.getContacts("sue").iterator().next();
-
-        List<Meeting> mikePastMeetingList = deserializedContactManager.getFutureMeetingList(deserializedMike);
-        List<Meeting> suePastMeetingList = deserializedContactManager.getFutureMeetingList(deserializedSue);
-
-        assertEquals(1, mikePastMeetingList.size());
-        assertEquals(futureDate, mikePastMeetingList.get(0).getDate());
-        assertEquals(mikeMeetingId, mikePastMeetingList.get(0).getId());
-
-        assertEquals(1, suePastMeetingList.size());
-        assertEquals(futureDate, suePastMeetingList.get(0).getDate());
-        assertEquals(sueMeetingId, suePastMeetingList.get(0).getId());
-    }
-
-    /**
-     * Test assumes flush() uses java serialization, to a file called contacts.txt.
-     */
-    @Test
-    public void testFlushPreservesUniqueContactIdGeneration() {
-
-        //TODO: separate runtimes into threads? ATM static fields aren't reset, so test isn't complete.
-
-        contactManager.addNewContact("mike", "mike notes");
-        contactManager.addNewContact("sue", "sue notes");
-        contactManager.addNewContact("kevin", "kevin notes");
-        List<Integer> preFlushIds = new LinkedList<Integer>();
-        preFlushIds.add(contactManager.getContacts("mike").iterator().next().getId());
-        preFlushIds.add(contactManager.getContacts("sue").iterator().next().getId());
-        preFlushIds.add(contactManager.getContacts("kevin").iterator().next().getId());
-
-        contactManager.flush();
-
-        ObjectInputStream d = null;
-        try {
-            d = new ObjectInputStream(
-                    new BufferedInputStream(
-                            new FileInputStream(FILENAME)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ContactManager deserializedContactManager = null;
-        try {
-            deserializedContactManager = (ContactManager) d.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            d.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        deserializedContactManager.addNewContact("molly", "molly notes");
-        int postFlushId = deserializedContactManager.getContacts("molly").iterator().next().getId();
-
-        assertFalse(preFlushIds.contains(postFlushId));
-    }
-
-    /**
-     * Test assumes flush() uses java serialization, to a file called contacts.txt.
-     */
-    @Test
-    public void testFlushPreservesUniqueMeetingIdGeneration() {
-
-        contactManager.addNewContact("mike", "mike notes");
-        Set<Contact> mikeSet = contactManager.getContacts("mike");
-        List<Integer> preFlushIds = new LinkedList<Integer>();
-        preFlushIds.add(contactManager.addFutureMeeting(mikeSet, futureDate));
-        preFlushIds.add(contactManager.addFutureMeeting(mikeSet, futureDate));
-        preFlushIds.add(contactManager.addFutureMeeting(mikeSet, futureDate));
-
-        contactManager.flush();
-
-        ObjectInputStream d = null;
-        try {
-            d = new ObjectInputStream(
-                    new BufferedInputStream(
-                            new FileInputStream(FILENAME)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ContactManager deserializedContactManager = null;
-        try {
-            deserializedContactManager = (ContactManager) d.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            d.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Set<Contact> deserializedMikeSet = deserializedContactManager.getContacts("mike");
-        int postFlushId = deserializedContactManager.addFutureMeeting(deserializedMikeSet, futureDate);
-
-        assertFalse(preFlushIds.contains(postFlushId));
-    }
-
-    @Test
-    public void testConstructorCreatesFileIfNotPresent() {
-
-    }
 
     @Test
     public void testConstructorLoadsFromFile() {
@@ -919,7 +627,7 @@ public class ContactManagerTest {
             e3.printStackTrace();
         }
 
-        ContactManager reconstructedCM = new ContactManagerImpl("specific_test.txt");
+        ContactManager reconstructedCM = new ContactManagerImpl();
 
         assertEquals(3, reconstructedCM.getContacts("").size());
         assertEquals(1, reconstructedCM.getContacts("kevin").size());

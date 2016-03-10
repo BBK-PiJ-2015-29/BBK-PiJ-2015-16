@@ -16,16 +16,16 @@ public interface ContactManager {
      * @return the ID for the meeting
      * @throws IllegalArgumentException if the meeting is set for a time in the past, of if any contact
      *                                  is unknown / non-existent
+     * @throws NullPointerException     if the meeting or the date are null
      */
     int addFutureMeeting(Set<Contact> contacts, Calendar date);
 
     /**
-     * Returns the PAST meeting with the requested ID, or null if it there is
-     * none.
+     * Returns the PAST meeting with the requested ID, or null if it there is none.
      *
      * @param id the ID for the meeting
      * @return the meeting with the requested ID, or null if it there is none.
-     * @throws IllegalArgumentException if there is a meeting with that ID happening in the future
+     * @throws IllegalStateException if there is a meeting with that ID happening in the future
      */
     PastMeeting getPastMeeting(int id);
 
@@ -53,9 +53,9 @@ public interface ContactManager {
      * will be chronologically sorted and will not contain any duplicates.
      *
      * @param contact one of the user�s contacts
-     * @return the list of future meeting(s) scheduled with this contact (maybe
-     * empty).
+     * @return the list of future meeting(s) scheduled with this contact (maybe empty).
      * @throws IllegalArgumentException if the contact does not exist
+     * @throws NullPointerException     if the contact is null
      */
     List<Meeting> getFutureMeetingList(Contact contact);
 
@@ -68,8 +68,9 @@ public interface ContactManager {
      *
      * @param date the date
      * @return the list of meetings
+     * @throws NullPointerException if the date are null
      */
-    List<Meeting> getFutureMeetingList(Calendar date);
+    List<Meeting> getMeetingListOn(Calendar date);
 
     /**
      * Returns the list of past meetings in which this contact has participated.
@@ -81,8 +82,9 @@ public interface ContactManager {
      * @return the list of future meeting(s) scheduled with this contact (maybe
      * empty).
      * @throws IllegalArgumentException if the contact does not exist
+     * @throws NullPointerException     if the contact is null
      */
-    List<PastMeeting> getPastMeetingList(Contact contact);
+    List<PastMeeting> getPastMeetingListFor(Contact contact);
 
     /**
      * Create a new record for a meeting that took place in the past.
@@ -110,28 +112,35 @@ public interface ContactManager {
      * @throws IllegalStateException    if the meeting is set for a date in the future
      * @throws NullPointerException     if the notes are null
      */
-    void addMeetingNotes(int id, String text);
+    PastMeeting addMeetingNotes(int id, String text);
 
     /**
      * Create a new contact with the specified name and notes.
      *
      * @param name  the name of the contact.
      * @param notes notes to be added about the contact.
-     * @throws NullPointerException if the name or the notes are null
+     * @return the ID for the new contact
+     * @throws IllegalArgumentException if the name or the notes are empty strings
+     * @throws NullPointerException     if the name or the notes are null
      */
-    void addNewContact(String name, String notes);
+    int addNewContact(String name, String notes);
 
     /**
      * Returns a list containing the contacts that correspond to the IDs.
+     * Note that this method can be used to retrieve just one contact by passing only one ID.
      *
      * @param ids an arbitrary number of contact IDs
      * @return a list containing the contacts that correspond to the IDs.
-     * @throws IllegalArgumentException if any of the IDs does not correspond to a real contact
+     * @throws IllegalArgumentException if no IDs are provided or if any of the provided IDs does
+     *                                  not correspond to a real contact
      */
     Set<Contact> getContacts(int... ids);
 
     /**
      * Returns a list with the contacts whose name contains that string.
+     * <p>
+     * If the string is the empty string, this method returns the set
+     * that contains all current contacts
      *
      * @param name the string to search for
      * @return a list with the contacts whose name contains that string.
