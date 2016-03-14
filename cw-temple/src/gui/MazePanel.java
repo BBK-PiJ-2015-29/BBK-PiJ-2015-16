@@ -14,6 +14,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import static gui.ROOT.ROOT;
+
 /**
  * An instance is responsible for drawing the underlying maze on the screen.
  * The MazePanel should contain only static images that don't need to change unless
@@ -21,7 +23,6 @@ import java.io.IOException;
  */
 public class MazePanel extends JPanel {
     private static final long serialVersionUID = 1L;
-    private static final String ROOT = "/Users/keith/CloudDocs/Courses/PiJ/BBK-PiJ-2015-16/cw-temple/res/";
 
     private static final String ORB_PATH = ROOT + "orb.png";           //Path to orb image
     private static final String PATH_PATH = ROOT + "path.png";         //Path to image representing path
@@ -33,8 +34,10 @@ public class MazePanel extends JPanel {
     private static final float DARK_FACTOR = 0.3f; //How dark should dark path be? Lower values means darker
     private static final int COIN_SPRITES_PER_ROW = 7;
     private static final int COIN_SPRITES_PER_COL = 2;
+
     public static int TILE_WIDTH;       //The width (in pixels) of a tile on the grid
     public static int TILE_HEIGHT;      //The height (in pixels) of a tile on the grid
+
     private final BufferedImage path;   //Image representing an area the explorer can walk on
     private final BufferedImage wall;   //Image representing a blocked area
     private final BufferedImage orb;    //Image representing the orb

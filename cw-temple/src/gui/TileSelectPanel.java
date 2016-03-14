@@ -13,6 +13,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import static gui.ROOT.ROOT;
 
 /**
  * An instance is a panel that displays information about a currently selected Tile.
@@ -42,7 +43,7 @@ public class TileSelectPanel extends JPanel {
     //Height proportion at which to display the amount of gold
     private static final double GOLD_HEIGHT = 0.70;
     private BufferedImage background;        //Background for options pane
-    private String BACKGROUND_PATH = "/Users/keith/CloudDocs/Courses/PiJ/BBK-PiJ-2015-16/cw-temple/res/info_texture.png";            //Location of background image
+    private String BACKGROUND_PATH = ROOT + "info_texture.png";            //Location of background image
     private JLabel instructions;            //Tells user how to use this panel
     private GUI gui;                        //Information about the larger GUI
     private Node selectedNode;        //The currently selected node

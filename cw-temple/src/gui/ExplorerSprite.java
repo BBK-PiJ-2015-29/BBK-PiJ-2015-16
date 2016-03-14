@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.SynchronousQueue;
+import static gui.ROOT.ROOT;
 
 /**
  * Responsible for managing the explorer and drawing it on the screen.
@@ -36,7 +37,7 @@ public class ExplorerSprite extends JPanel {
 
     private double ANIMATION_FPS = 10;    //Number of animation frames displayed per second
 
-    private String spriteSheet = "/Users/keith/CloudDocs/Courses/PiJ/BBK-PiJ-2015-16/cw-temple/res/explorer_sprites.png";    //Location of the spritesheet image
+    private String spriteSheet = ROOT + "explorer_sprites.png";    //Location of the spritesheet image
 
     /**
      * Constructor:  an instance with player;'s starting position (startRow, startCol).

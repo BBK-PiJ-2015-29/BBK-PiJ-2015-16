@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+import static gui.ROOT.ROOT;
+
 import static game.Constants.MAX_BONUS;
 
 public class OptionsPanel extends JPanel implements ActionListener {
@@ -32,7 +34,7 @@ public class OptionsPanel extends JPanel implements ActionListener {
     private JLabel timeRemainingLabel;        //Shows the amount of time we have left
     private JLabel scoreLabel;                //Shows coins multiplied by bonus factor
     private BufferedImage background;        //Background for options pane
-    private String BACKGROUND_PATH = "/Users/keith/CloudDocs/Courses/PiJ/BBK-PiJ-2015-16/cw-temple/res/info_texture.png";            //Location of background image
+    private String BACKGROUND_PATH = ROOT + "info_texture.png";            //Location of background image
 
     /**
      * Constructor: an instance
