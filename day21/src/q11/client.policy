@@ -1,0 +1,4 @@
+grant codeBase "file:/Users/keith/Courses/PiJ/repo/day21/src" {
+    permission java.security.AllPermission;
+    permission java.security.SocketPermission "*:1024-", "accept, resolve";
+};
