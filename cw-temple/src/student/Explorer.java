@@ -2,11 +2,6 @@ package student;
 
 import game.EscapeState;
 import game.ExplorationState;
-import game.NodeStatus;
-
-import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 public class Explorer {
 
@@ -41,26 +36,7 @@ public class Explorer {
      * @param state the information available at the current state
      */
     public void explore(ExplorationState state) {
-        Set<Long> seen = new LinkedHashSet<>();
-
-        while (state.getDistanceToTarget() != 0) {
-            Collection<NodeStatus> cns = state.getNeighbours();
-            // add current position to seen items
-            seen.add(state.getCurrentLocation());
-
-            int distance = Integer.MAX_VALUE;
-            long id = -1L;
-            for (NodeStatus ns : cns) {
-                if (ns.getDistanceToTarget() < distance && !seen.contains(ns.getId())) {
-                    distance = ns.getDistanceToTarget();
-                    id = ns.getId();
-                }
-            }
-            System.out.println("Moving to tile with id: " + id);
-            System.out.println("Moving from position: " + state.getCurrentLocation());
-            state.moveTo(id);
-            System.out.println("\t to: " + state.getCurrentLocation());
-        }
+        //TODO:
     }
 
     /**
