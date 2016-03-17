@@ -1,7 +1,7 @@
 *.class
 .idea
 *.iml
-out
+.metadata
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -15,13 +15,13 @@ out
 hs_err_pid*
 
 # working directories
-day15
-day16
-day17
-day18
-day19
-day20
-day21
+out
 
 # .gitignore
 .gitignore
+
+RemoteSystemsTempFiles
+
+# coursework repos
+cw-cm
+cw-ds
