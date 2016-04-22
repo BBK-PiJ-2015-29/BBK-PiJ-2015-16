@@ -2,9 +2,6 @@ package lambda;
 
 import java.util.List;
 
-/**
- * @author MikeW
- */
 public class RoboCallTest02 {
 
     public static void main(String[] args) {
@@ -21,7 +18,5 @@ public class RoboCallTest02 {
 
         System.out.println("\n=== Mail all Pilots ===");
         robo.mailPilots(pl);
-
     }
-
 }

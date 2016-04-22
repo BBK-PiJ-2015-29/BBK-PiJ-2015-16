@@ -1,5 +1,7 @@
 package generics;
 
+import java.util.Arrays;
+
 public class GenericListPrint {
 
     // print array of different type using a single generic method:
@@ -7,9 +9,7 @@ public class GenericListPrint {
     // generic method printArray
     public static <E> void printArray(E[] inputArray) {
         // Display array elements
-        for (E element : inputArray) {
-            System.out.print(" " + element);
-        }
+        Arrays.stream(inputArray).forEach(x -> System.out.print(' ' + x.toString()));
         System.out.println();
     }
 

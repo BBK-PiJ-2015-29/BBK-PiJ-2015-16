@@ -3,7 +3,6 @@ package streams;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 /**
@@ -11,7 +10,8 @@ import java.util.stream.IntStream;
  */
 public class Streams3 {
 
-    public static final int MAX = 1000000;
+    static Timer timer = new Timer();
+    static final int MAX = 1000000;
 
     public static void sortSequential() {
         List<String> values = new ArrayList<>(MAX);
@@ -21,14 +21,11 @@ public class Streams3 {
         });
 
         // sequential
-
-        final long start = System.nanoTime();
-
+        timer.start();
         System.out.println(values.stream().sorted().count());
+        timer.end();
 
-        final long stop = System.nanoTime();
-
-        System.out.println(String.format("sequential sort took: %d ms", TimeUnit.NANOSECONDS.toMillis(stop - start)));
+        System.out.println(String.format("sequential sort took: %d ms", timer.getTotalTime()));
     }
 
     public static void sortParallel() {
@@ -38,17 +35,17 @@ public class Streams3 {
             values.add(uuid.toString());
         });
 
-        final long start = System.nanoTime();
-
+        timer.start();
         System.out.println(values.parallelStream().sorted().count());
+        timer.end();
 
-        final long stop = System.nanoTime();
-
-        System.out.println(String.format("parallel sort took: %d ms", TimeUnit.NANOSECONDS.toMillis(stop - start)));
+        System.out.println(String.format("parallel sort took: %d ms", timer.getTotalTime()));
     }
 
     public static void main(String[] args) {
-        sortSequential();
-        sortParallel();
+        for (int x=0; x < 10; x++) {
+            sortSequential();
+            sortParallel();
+        }
     }
 }

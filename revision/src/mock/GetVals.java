@@ -1,3 +1,5 @@
+package mock;
+
 public class GetVals extends Thread {
     private Queue Q;
 

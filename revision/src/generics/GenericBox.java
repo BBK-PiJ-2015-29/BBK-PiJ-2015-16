@@ -4,8 +4,8 @@ public class GenericBox<T> {
     private T t;
 
     public static void main(String[] args) {
-        GenericBox<Integer> integerGenericBox = new GenericBox<Integer>();
-        GenericBox<String> stringGenericBox = new GenericBox<String>();
+        GenericBox<Integer> integerGenericBox = new GenericBox<>();
+        GenericBox<String> stringGenericBox = new GenericBox<>();
 
         integerGenericBox.add(new Integer(10));
         stringGenericBox.add(new String("Hello World"));

@@ -1,3 +1,5 @@
+package mock;
+
 import java.util.Scanner;
 
 public class Match {

@@ -1,3 +1,5 @@
+package mock;
+
 public class MergeSort {
     public static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
         if (hi - lo <= 1) return;

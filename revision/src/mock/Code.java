@@ -1,3 +1,5 @@
+package mock;
+
 public class Code {
     final static int SIZE = 10;
 
