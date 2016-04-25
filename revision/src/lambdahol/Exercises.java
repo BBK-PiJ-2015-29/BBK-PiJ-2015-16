@@ -35,27 +35,17 @@ public class Exercises {
         reader.close();
     }
 
-// Exercise 1: Print out all the words in wordList, which is
-// a static List<String> defined at the bottom of this file.
 
     static final String REGEXP = "\\W+"; // for splitting into words
 
-// Exercise 2: Convert all words in wordList to upper case,
-// and gather the result into an output list.
     static List<String> wordList = Arrays.asList(
             "every", "problem", "in", "computer", "science",
             "can", "be", "solved", "by", "adding", "another",
             "level", "of", "indirection");
 
-// Exercise 3: Find all the words in wordList that have even length
-// and put them into an output list.
     private BufferedReader reader;
 
-// Exercise 4: Count the number of lines in a file. The field *reader*
-// is a BufferedReader which will be opened for you on the text file.
-// See the JUnit @Before and @After methods at the bottom of this file.
-// The text file is "SonnetI.txt" (Shakespeare's first sonnet) which is
-// located at the root of this NetBeans project.
+    // Exercise 1: Print out all the words in wordList, which is a static List<String> .
 
     @Test
     @Ignore
@@ -65,7 +55,8 @@ public class Exercises {
         // no assertions
     }
 
-// Exercise 5: Join lines 3-4 from the text file into a single string.
+    // Exercise 2: Convert all words in wordList to upper case,
+    // and gather the result into an output list.
 
     @Test
     @Ignore
@@ -80,7 +71,9 @@ public class Exercises {
                 output);
     }
 
-// Exercise 6: Find the length of the longest line in the file.
+
+    // Exercise 3: Find all the words in wordList that have even length
+    // and put them into an output list.
 
     @Test
     @Ignore
@@ -93,10 +86,11 @@ public class Exercises {
                 output);
     }
 
-// Exercise 7: Collect all the words from the text file into a list.
-// Hint: use String.split(REGEXP) to split a string into words.
-// Splitting this way results in "words" that are the empty string,
-// which should be discarded. REGEXP is defined at the bottom of this file.
+   // Exercise 4: Count the number of lines in a file. The field *reader*
+    // is a BufferedReader which will be opened for you on the text file.
+    // See the JUnit @Before and @After methods at the bottom of this file.
+    // The text file is "SonnetI.txt" (Shakespeare's first sonnet) which is
+    // located at the root of this NetBeans project.
 
     @Test
     @Ignore
@@ -106,7 +100,8 @@ public class Exercises {
         assertEquals(14, count);
     }
 
-// Exercise 8: Create a list containing the words, lowercased, in alphabetical order.
+
+    // Exercise 5: Join lines 3-4 from the text file into a single string.
 
     @Test
     @Ignore
@@ -119,8 +114,7 @@ public class Exercises {
                 output);
     }
 
-// Exercise 9: Sort unique, lower-cased words by length, then alphabetically
-// within length, and place the result into an output list.
+    // Exercise 6: Find the length of the longest line in the file.
 
     @Test
     @Ignore
@@ -130,10 +124,11 @@ public class Exercises {
         assertEquals(longest, 53);
     }
 
-// Exercise 10: Categorize the words into a map, where the map's key is
-// the length of each word, and the value corresponding to a key is a
-// list of words of that length. Don't bother with uniqueness or lower-
-// casing the words.
+   // Exercise 7: Collect all the words from the text file into a list.
+    // Hint: use String.split(REGEXP) to split a string into words.
+    // Splitting this way results in "words" that are the empty string,
+    // which should be discarded. REGEXP is defined at the bottom of this file.
+
 
     @Test
     @Ignore
@@ -160,9 +155,7 @@ public class Exercises {
                 output);
     }
 
-// Exercise 11: Gather the words into a map, accumulating a count of the
-// number of occurrences of each word. Don't worry about upper case and
-// lower case.
+    // Exercise 8: Create a list containing the words, lowercased, in alphabetical order.
 
     @Test
     @Ignore
@@ -190,16 +183,10 @@ public class Exercises {
                 output);
     }
 
-// Exercise 12: Create a nested grouping, where the outer map is a map
-// from the first letter of the word to a submap. (Use a string of length
-// one as the key.) The submap, in turn, is a mapping from the length of the
-// word to a list of words with that length. Don't bother with any downcasing
-// or uniquifying of the words.
-//
-// For example, given the words "foo bar baz bazz" the top level map would have
-// a keys of "f" and "b". The value corresponding to "b" would be a map with
-// a key of 3 with a value of [bar baz] (a list of Strings) and a key of 4
-// with a value of [bazz] (a one-element list of String).
+
+    // Exercise 9: Sort unique, lower-cased words by length, then alphabetically
+    // within length, and place the result into an output list.
+
 
     @Test
     @Ignore
@@ -224,7 +211,11 @@ public class Exercises {
                 output);
     }
 
-// ===== TEST INFRASTRUCTURE ==================================================
+    // Exercise 10: Categorize the words into a map, where the map's key is
+    // the length of each word, and the value corresponding to a key is a
+    // list of words of that length. Don't bother with uniqueness or lower-
+    // casing the words.
+
 
     @Test
     @Ignore
@@ -238,9 +229,11 @@ public class Exercises {
         assertEquals(Arrays.asList("substantial"), map.get(11));
         assertFalse(map.containsKey(12));
     }
-    // Butler Lampson
+    // Exercise 11: Gather the words into a map, accumulating a count of the
+    // number of occurrences of each word. Don't worry about upper case and
+    // lower case.
 
-    @Test
+  @Test
     @Ignore
     public void wordFrequencies() throws IOException {
         Map<String, Long> map = null; /* TODO */
@@ -252,6 +245,17 @@ public class Exercises {
         assertEquals(3L, (long) map.get("world"));
         assertFalse(map.containsKey("lambda"));
     }
+
+    // Exercise 12: Create a nested grouping, where the outer map is a map
+// from the first letter of the word to a submap. (Use a string of length
+// one as the key.) The submap, in turn, is a mapping from the length of the
+// word to a list of words with that length. Don't bother with any downcasing
+// or uniquifying of the words.
+//
+// For example, given the words "foo bar baz bazz" the top level map would have
+// a keys of "f" and "b". The value corresponding to "b" would be a map with
+// a key of 3 with a value of [bar baz] (a list of Strings) and a key of 4
+// with a value of [bazz] (a one-element list of String).
 
     @Test
     @Ignore
