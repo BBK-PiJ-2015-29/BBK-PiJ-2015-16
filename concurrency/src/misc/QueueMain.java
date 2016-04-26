@@ -1,4 +1,4 @@
-package mock;
+package misc;
 
 public class QueueMain {
     public static void main(String[] args) {

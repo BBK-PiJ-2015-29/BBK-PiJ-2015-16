@@ -1,4 +1,4 @@
-package mock;
+package misc;
 
 public class SetVals extends Thread {
     private Queue Q;

@@ -1,5 +1,3 @@
-package bigfour;
-
 import java.util.Optional;
 
 public class GenericMain {

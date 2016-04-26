@@ -1,4 +1,4 @@
-package mock;
+package misc;
 
 import java.util.Scanner;
 

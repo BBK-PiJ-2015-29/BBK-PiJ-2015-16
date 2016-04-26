@@ -1,4 +1,4 @@
-package mock;
+package misc;
 
 public class MergeSort {
     public static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {

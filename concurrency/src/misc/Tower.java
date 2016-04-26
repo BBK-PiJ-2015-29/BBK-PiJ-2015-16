@@ -1,4 +1,4 @@
-package mock;
+package misc;
 
 public interface Tower {
     boolean inRange(double x0, double y0);

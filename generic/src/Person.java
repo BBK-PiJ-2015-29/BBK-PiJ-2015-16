@@ -1,5 +1,3 @@
-package bigfour;
-
 public interface Person extends Comparable<Person> {
     String getName();
 

@@ -1,4 +1,4 @@
-package mock;
+package misc;
 
 public class Queue {
 	private QueueNode head, tail;

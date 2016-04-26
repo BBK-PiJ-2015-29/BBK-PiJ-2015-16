@@ -1,4 +1,4 @@
-package lambdahol;
+package java8.lambdahol;
 
 /*
  * For each exercise, develop a solution using Java SE 8 Lambda/Streams
@@ -243,7 +243,7 @@ public class Exercises {
         assertEquals(1L, (long) map.get("churl"));
         assertEquals(2L, (long) map.get("thine"));
         assertEquals(3L, (long) map.get("world"));
-        assertFalse(map.containsKey("lambda"));
+        assertFalse(map.containsKey("java8"));
     }
 
     // Exercise 12: Create a nested grouping, where the outer map is a map

@@ -1,4 +1,4 @@
-package mock;
+package misc;
 
 public class Code {
     final static int SIZE = 10;

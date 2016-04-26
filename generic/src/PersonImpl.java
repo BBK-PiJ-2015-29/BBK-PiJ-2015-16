@@ -1,5 +1,3 @@
-package bigfour;
-
 public class PersonImpl implements Person {
 
     private int yearOfBirth;
