@@ -52,6 +52,9 @@ public class Exercises {
     public void printAllWords() {
         /* TODO */
 
+        // We will give you this one to show you the "style"
+        // wordList.forEach(System.out::println);
+
         // no assertions
     }
 
