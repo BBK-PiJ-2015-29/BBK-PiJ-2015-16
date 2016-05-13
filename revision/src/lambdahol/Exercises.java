@@ -4,8 +4,6 @@ package lambdahol;
  * For each exercise, develop a solution using Java SE 8 Lambda/Streams
  * and remove the @Ignore tag.
  */
-
-import com.sun.org.apache.regexp.internal.RE;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -18,7 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -188,7 +186,6 @@ public class Exercises {
                     return list.stream();
                 })
                 .sorted(String::compareTo)
-                .filter(s1 -> !s1.isEmpty())
                 .collect(Collectors.toList());
         assertEquals(
                 Arrays.asList(
@@ -232,7 +229,6 @@ public class Exercises {
                         return s1.compareTo(s2);
                     } else return 0;
                 })
-                .filter(s1 -> !s1.isEmpty())
                 .collect(Collectors.toList());
 
         assertEquals(
@@ -262,20 +258,11 @@ public class Exercises {
     @Test
     @Ignore
     public void mapLengthToWordList() throws IOException {
-        Map<Integer, List<String>> map = new HashMap<>(); /* TODO */
+        Map<Integer, List<String>> map = null; /* TODO */
 
-        reader.lines().flatMap(s -> {
-            List<String> list = new ArrayList<String>(Arrays.asList(s.split(REGEXP)));
-            return list.stream();
-        })
-                .forEach(word -> {
-                    int length = word.length();
-                    if(!map.containsKey(length)) {
-                        List<String> list = new ArrayList<String>();
-                        map.put(length, new ArrayList<>());
-                    }
-                    map.get(length).add(word);
-                });
+        map = reader.lines().flatMap(s -> Arrays.stream(s.split(REGEXP)))
+                .collect(Collectors.groupingBy(String::length));
+
 
         assertEquals(6, map.get(7).size());
         assertEquals(Arrays.asList("increase", "ornament"), map.get(8));
@@ -291,21 +278,10 @@ public class Exercises {
   @Test
     @Ignore
     public void wordFrequencies() throws IOException {
-        Map<String, Long> map = new HashMap<>(); /* TODO */
+        Map<String, Long> map = null; /* TODO */
 
-      reader.lines().flatMap(s -> {
-          List<String> list = new ArrayList<String>(Arrays.asList(s.split(REGEXP)));
-          return list.stream();
-      })
-              .forEach(s -> {
-                  if (!map.containsKey(s)) {
-                      map.put(s,1L);
-                  } else {
-                      long l = map.get(s);
-                      map.replace(s,l++);
-                  }
-
-              });
+      map = reader.lines().flatMap(s -> Arrays.stream(s.split(REGEXP)))
+              .collect(Collectors.groupingBy();
 
         assertEquals(2L, (long) map.get("tender"));
         assertEquals(6L, (long) map.get("the"));
